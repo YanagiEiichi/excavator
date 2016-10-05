@@ -1,0 +1,14 @@
+{
+  "name": "excavator",
+  "version": "0.1.0",
+  "description": "A light-weight object query lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "author": "YanagiEiichi <admin@web-tinker.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  }
+}
