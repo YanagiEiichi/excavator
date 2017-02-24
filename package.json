@@ -1,6 +1,6 @@
 {
   "name": "excavator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A light-weight object query lib",
   "main": "index.js",
   "scripts": {

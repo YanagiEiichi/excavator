@@ -54,4 +54,42 @@ describe('## read', () => {
     assert.strictEqual(inc, 1, 'inc must be 1');
   });
 
+  it('must find an array', () => {
+    let inc = 0;
+    let a = [ { b: [ 1, 2, 3 ] } ];
+    excavate({ a }, 'a.b', (value, key, base) => {
+      assert(value instanceof Array, 'value must be a Array');
+      assert.strictEqual(value.length, 3, 'value.length must be a 3');
+      inc++;
+    });
+    assert.strictEqual(inc, 1, 'inc must be 1');
+  });
+
+  it('must find a null', () => {
+    let inc = 0;
+    let a = [ { b: null } ];
+    excavate({ a }, 'a.b', (value, key, base) => {
+      assert.strictEqual(value, null, 'value must be null');
+      inc++;
+    });
+    assert.strictEqual(inc, 1, 'inc must be 1');
+  });
+
+  it('must find an undefined', () => {
+    let inc = 0;
+    let a = [ { b: void 0 } ];
+    excavate({ a }, 'a.b', (value, key, base) => {
+      assert.strictEqual(value, void 0, 'value must be null');
+      inc++;
+    });
+    assert.strictEqual(inc, 1, 'inc must be 1');
+  });
+
+  it('must not find any one', () => {
+    let a = [ {} ];
+    excavate({ a }, 'a.b', (value, key, base) => {
+      throw new Error('callback must not call');
+    });
+  });
+
 });

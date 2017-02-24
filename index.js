@@ -15,5 +15,7 @@ module.exports = (base, path, callback) => {
   if (typeof path !== 'string') throw new TypeError('<path> must be a string');
   path = path.split('.');
   let key = path.pop();
-  for (let head of walk(base, path)) callback(head[key], key, head);
+  for (let head of walk(base, path)) {
+    if (key in head) callback(head[key], key, head);
+  }
 };
