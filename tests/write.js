@@ -46,7 +46,7 @@ describe('## write', () => {
     let inc = 0;
     let b = 123;
     let a = { b, c: 1 };
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', (value) => {
       assert.strictEqual(value, 123, 'value must be 123');
       assert.strictEqual(a.c, 1, 'a.c must be 1');
       delete a.c;

@@ -1,9 +1,9 @@
-const walk = function*(base, path, pos = 0) {
+const walk = function *(base, path, pos = 0) {
   if (base instanceof Array) {
-    for (let i = 0; i < base.length; i++) yield* walk(base[i], path, pos);
+    for (let i = 0; i < base.length; i++) yield *walk(base[i], path, pos);
   } else if (base instanceof Object) {
     if (pos < path.length) {
-      yield* walk(base[path[pos]], path, pos + 1);
+      yield *walk(base[path[pos]], path, pos + 1);
     } else {
       yield base;
     }

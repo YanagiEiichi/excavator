@@ -12,7 +12,7 @@ describe('## read', () => {
     let c = { d };
     let b = { c };
     let a = { b };
-    excavate({ a }, 'a.b.c.d.e.f.g', (value, key, base) => {
+    excavate({ a }, 'a.b.c.d.e.f.g', (value) => {
       assert.strictEqual(value, 233, 'value must be 233');
       inc++;
     });
@@ -22,7 +22,7 @@ describe('## read', () => {
   it('must through all array', () => {
     let inc = 0;
     let a = [ [ [ [ [ { b: 1 } ] ] ] ] ];
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', (value) => {
       assert.strictEqual(value, 1, 'value must be 1');
       inc++;
     });
@@ -47,7 +47,7 @@ describe('## read', () => {
   it('must find an object', () => {
     let inc = 0;
     let a = [ { b: /hehe/ } ];
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', (value) => {
       assert(value instanceof RegExp, 'value must be a RegExp');
       inc++;
     });
@@ -57,7 +57,7 @@ describe('## read', () => {
   it('must find an array', () => {
     let inc = 0;
     let a = [ { b: [ 1, 2, 3 ] } ];
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', (value) => {
       assert(value instanceof Array, 'value must be a Array');
       assert.strictEqual(value.length, 3, 'value.length must be a 3');
       inc++;
@@ -68,7 +68,7 @@ describe('## read', () => {
   it('must find a null', () => {
     let inc = 0;
     let a = [ { b: null } ];
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', (value) => {
       assert.strictEqual(value, null, 'value must be null');
       inc++;
     });
@@ -78,7 +78,7 @@ describe('## read', () => {
   it('must find an undefined', () => {
     let inc = 0;
     let a = [ { b: void 0 } ];
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', (value) => {
       assert.strictEqual(value, void 0, 'value must be null');
       inc++;
     });
@@ -87,7 +87,7 @@ describe('## read', () => {
 
   it('must not find any one', () => {
     let a = [ {} ];
-    excavate({ a }, 'a.b', (value, key, base) => {
+    excavate({ a }, 'a.b', () => {
       throw new Error('callback must not call');
     });
   });

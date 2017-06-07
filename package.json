@@ -4,11 +4,13 @@
   "description": "A light-weight object query lib",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests"
+    "test": "eslint --fix . && mocha tests"
   },
   "author": "YanagiEiichi <admin@web-tinker.com>",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-elemefe": "^0.3.0",
     "mocha": "^3.2.0"
   }
 }
