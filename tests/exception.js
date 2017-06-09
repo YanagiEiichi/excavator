@@ -13,14 +13,4 @@ describe('## exception', () => {
     throw Error('must be thrown');
   });
 
-  it('must be thrown without callback', done => {
-    try {
-      excavate({}, 'hehe');
-    } catch (error) {
-      assert(error instanceof TypeError, 'error must be a TypeError');
-      return done();
-    }
-    throw Error('must be thrown');
-  });
-
 });
